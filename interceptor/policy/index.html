@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Interceptor</title>
+  <meta name="description" content="Privacy Policy for Interceptor - A 100% offline, local-first personal app. Zero data collection, zero tracking, zero accounts.">
+  <meta name="author" content="infernogurala / John Moses">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon placeholder / SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Dark Theme (Default) */
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.75);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --bg-input: #1e293b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --accent-primary: #10b981;
+      --accent-primary-hover: #059669;
+      --accent-glow: rgba(16, 185, 129, 0.18);
+      --accent-surface: rgba(16, 185, 129, 0.1);
+      
+      --badge-bg: rgba(16, 185, 129, 0.15);
+      --badge-text: #34d399;
+      --badge-border: rgba(16, 185, 129, 0.3);
+
+      --callout-bg: rgba(15, 23, 42, 0.75);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --bg-card-hover: #f1f5f9;
+      --bg-input: #e2e8f0;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      
+      --accent-primary: #059669;
+      --accent-primary-hover: #047857;
+      --accent-glow: rgba(5, 150, 105, 0.15);
+      --accent-surface: rgba(5, 150, 105, 0.08);
+      
+      --badge-bg: rgba(5, 150, 105, 0.1);
+      --badge-text: #065f46;
+      --badge-border: rgba(5, 150, 105, 0.25);
+
+      --callout-bg: rgba(241, 245, 249, 0.9);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Ambient Glow Background */
+    .ambient-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ambient-circle-1 {
+      position: absolute;
+      top: -120px;
+      right: 15%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+
+    /* Header */
+    header.header {
+      position: sticky;
+      top: 0;
+      height: 70px;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+    }
+    [data-theme="light"] header.header {
+      background: rgba(248, 250, 252, 0.85);
+    }
+
+    .header-container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+    .brand-logo svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+    .brand-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .brand-text span {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      display: block;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+    .btn-icon:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-primary);
+      background: var(--bg-card-hover);
+    }
+    .btn-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(30, 41, 59, 0.6) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      margin-bottom: 32px;
+      position: relative;
+      box-shadow: var(--shadow-md);
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--badge-border);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .hero-meta-item strong {
+      color: var(--text-primary);
+    }
+
+    /* Highlight Summary Badges */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .summary-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+    .summary-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--accent-surface);
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+    .summary-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    .summary-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .summary-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Policy Card Section */
+    .policy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .section-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--accent-surface);
+      color: var(--accent-primary);
+      border: 1px solid var(--badge-border);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .section-content {
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+    }
+    .section-content p {
+      margin-bottom: 14px;
+    }
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+    .section-content ul {
+      margin: 10px 0 16px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .section-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Callouts */
+    .callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--accent-primary);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin: 18px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .callout-icon {
+      color: var(--accent-primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .callout-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .callout-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+    .callout-text strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 18px 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th {
+      background: var(--bg-secondary);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      background: var(--bg-input);
+      color: var(--accent-primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer.footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 24px;
+      background: var(--bg-secondary);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    footer p {
+      margin-bottom: 6px;
+    }
+    footer strong {
+      color: var(--text-primary);
+    }
+
+    @media print {
+      header.header, .header-actions, .ambient-bg {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .policy-card, .hero-banner {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-circle-1"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm0 18c-3.75-1-6.8-4.9-6.98-9.8L12 6.8l6.98 3.4C18.8 15.1 15.75 19 12 20z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Interceptor</h1>
+          <span>100% Offline &amp; Local Application</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Print Button -->
+        <button class="btn-icon" id="printBtn" title="Print Policy" aria-label="Print policy">
+          <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+        </button>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="btn-icon" id="themeToggle" title="Toggle Theme" aria-label="Toggle theme">
+          <svg id="themeIconSun" viewBox="0 0 24 24" style="display: none;"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/></svg>
+          <svg id="themeIconMoon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-tags">
+        <span class="tag">100% Offline App</span>
+        <span class="tag">Zero Data Collection</span>
+        <span class="tag">No Sign-in / No Accounts</span>
+        <span class="tag">No Ads / No Trackers</span>
+      </div>
+      <h1 class="hero-title">Privacy Policy</h1>
+      <p class="hero-subtitle">
+        <strong>Interceptor</strong> is built from the ground up as a private, 100% offline personal app. Just like an offline clock, calculator, or local text editor, Interceptor operates entirely on your device with <strong>zero external servers, zero account sign-ins, and zero data collection</strong>.
+      </p>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span>App:</span> <strong>Interceptor</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>Package:</span> <code>com.interceptor.interceptor</code>
+        </div>
+        <div class="hero-meta-item">
+          <span>Effective Date:</span> <strong>October 18, 2026</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>Developer:</span> <strong>infernogurala / John Moses</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Badges -->
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+        </div>
+        <div class="summary-title">No Account Needed</div>
+        <div class="summary-desc">No login, no passwords, no email registration. Open the app and use it immediately.</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-icon">
+          <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
+        </div>
+        <div class="summary-title">Zero Remote Servers</div>
+        <div class="summary-desc">We do not own or connect to any cloud databases or backend servers. Everything stays on your phone.</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        </div>
+        <div class="summary-title">Zero Tracking / Ads</div>
+        <div class="summary-desc">No analytics SDKs, no advertisement frameworks, no trackers, and no user profiling.</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <div class="summary-title">Local Device Storage</div>
+        <div class="summary-desc">Your notes, feeds, and files remain strictly inside your device's local memory and storage.</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Overview -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">01</span>
+        <h2 class="section-title">Overview</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          This Privacy Policy explains how <strong>Interceptor</strong> handles information. In short: <strong>we do not collect, transmit, store, or share any personal information whatsoever.</strong>
+        </p>
+        <p>
+          Interceptor is designed to function strictly as a self-contained, offline utility on your Android device (similar to a native calculator, timer, or offline notepad). It requires no internet connectivity for core operation, requires no user sign-in or account creation, and contains zero background network reporting mechanisms.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 2: Information We Collect -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">02</span>
+        <h2 class="section-title">Information We Collect: None</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          We strictly follow a zero-data-collection model:
+        </p>
+        <ul>
+          <li><strong>No Personal Information:</strong> We do not collect names, email addresses, phone numbers, contacts, locations, or account credentials.</li>
+          <li><strong>No User Accounts:</strong> There is no registration, login, or user profiling.</li>
+          <li><strong>No Device Identifiers:</strong> We do not collect or record your IMEI, Android ID, MAC address, advertising ID (AAID), or IP address.</li>
+          <li><strong>No Usage Analytics:</strong> We do not use Google Analytics, Firebase, Mixpanel, or any other tracking tools to monitor how you use the app.</li>
+          <li><strong>No Advertisements:</strong> The app contains zero ads and zero advertising SDKs.</li>
+        </ul>
+
+        <div class="callout">
+          <div class="callout-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </div>
+          <div class="callout-text">
+            <strong>Key Summary:</strong>
+            Because Interceptor is an offline tool with no remote server backend, the developer has zero access to your data, your files, or your activity.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Storage & Permissions -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">03</span>
+        <h2 class="section-title">Device Storage &amp; Permissions</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          To allow you to create, view, and organize your own local markdown notes and custom folders (such as local Obsidian vaults or document directories), Interceptor may request storage access:
+        </p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Android Permission</th>
+                <th>Why It Is Needed</th>
+                <th>Data Handling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>READ_EXTERNAL_STORAGE</code><br><code>WRITE_EXTERNAL_STORAGE</code><br><code>MANAGE_EXTERNAL_STORAGE</code></td>
+                <td>Allows you to choose local folders on your device so the app can read and save your markdown notes (.md, .txt) directly on your device.</td>
+                <td><strong>100% Local.</strong> Files are read and written strictly on your physical phone memory. No files are ever uploaded or transmitted outside your device.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          <strong>Scope of Access:</strong> The app only interacts with the specific directories or markdown files you explicitly select. We never scan, harvest, or inspect your personal photos, videos, contacts, or files from other applications.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4: Data Retention & Deletion -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">04</span>
+        <h2 class="section-title">Data Storage, Retention, &amp; Deletion</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          <strong>Where Your Data Resides:</strong> All your notes, settings, and feed preferences are saved exclusively in local storage on your device (in local app storage and your designated device folders).
+        </p>
+        <p>
+          <strong>How to Delete Your Data:</strong> You have absolute, direct control over all your data:
+        </p>
+        <ul>
+          <li>You can delete any note, card, or folder inside the app at any time.</li>
+          <li>You can clear all app preferences and data through your phone's <strong>Settings &rarr; Apps &rarr; Interceptor &rarr; Clear Data / Storage</strong>.</li>
+          <li>Uninstalling the application immediately removes the application and all its internal local cached files from your phone.</li>
+        </ul>
+        <p>
+          Because no data is ever transmitted to us or stored on any remote servers, there is no remote account or database record to delete.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5: Third Parties -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">05</span>
+        <h2 class="section-title">Third-Party Services</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          Interceptor does not use third-party analytics services, advertising networks, or remote tracking services. Font assets (such as bundled local fonts) are packaged directly with the application, ensuring that the app functions seamlessly in complete airplane/offline mode.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 6: Children's Privacy -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">06</span>
+        <h2 class="section-title">Children's Privacy</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          Because Interceptor is an offline tool that does not collect, store, or transmit any personal information, it is safe for all audiences and does not collect any data from children or any other users under the age of 13.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 7: Changes to this Policy -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">07</span>
+        <h2 class="section-title">Changes to This Privacy Policy</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          If we ever make updates to this Privacy Policy in future versions of the app, we will update the "Effective Date" at the top of this document. Any future version will continue to honor our commitment to user privacy and data ownership.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 8: Contact -->
+    <section class="policy-card">
+      <div class="section-header">
+        <span class="section-badge">08</span>
+        <h2 class="section-title">Contact Information</h2>
+      </div>
+      <div class="section-content">
+        <p>
+          If you have any questions or feedback regarding this Privacy Policy, please feel free to reach out:
+        </p>
+        <div class="table-container">
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Developer</strong></td>
+                <td>infernogurala / John Moses</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td><a href="mailto:johnmosesg150@gmail.com">johnmosesg150@gmail.com</a></td>
+              </tr>
+              <tr>
+                <td><strong>App</strong></td>
+                <td>Interceptor (<code>com.interceptor.interceptor</code>)</td>
+              </tr>
+              <tr>
+                <td><strong>Source Code</strong></td>
+                <td><a href="https://github.com/infernoGurala/Interceptor-app" target="_blank" rel="noopener noreferrer">github.com/infernoGurala/Interceptor-app &rarr;</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>Interceptor &copy; 2026 infernogurala</strong></p>
+    <p>A 100% offline, local-first utility. Zero servers. Zero tracking. Zero data collection.</p>
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('themeIconSun');
+    const moonIcon = document.getElementById('themeIconMoon');
+    const body = document.body;
+
+    function applyTheme(theme) {
+      body.setAttribute('data-theme', theme);
+      if (theme === 'light') {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+      localStorage.setItem('interceptor_privacy_theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('interceptor_privacy_theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme') || 'dark';
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    // Print
+    document.getElementById('printBtn').addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+</body>
+</html>
